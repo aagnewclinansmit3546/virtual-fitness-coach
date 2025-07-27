@@ -3,15 +3,19 @@
 from workouts.logger import Logger
 from workouts.history import History
 from workouts.summary import Summary
+from workouts.plot import Plot
 from export.csv_exporter import CSVExporter
 from utils.menu import Menu
+
+FILENAME = "workouts.csv"
 
 def main():
     logger = Logger()
     history = History()
     summary = Summary()
-    csv_exporter = CSVExporter()
-    menu = Menu(logger, history, summary, csv_exporter)
+    plot = Plot()
+    csv_exporter = CSVExporter(FILENAME)
+    menu = Menu()
 
     while True:
         choice = menu.display_menu()
@@ -24,6 +28,8 @@ def main():
         elif choice == '4':
             csv_exporter.export_to_csv()
         elif choice == '5':
+            plot.plot_calories_per_day()
+        elif choice == "6":
             print("Exiting the application. Goodbye!")
             break
         else:

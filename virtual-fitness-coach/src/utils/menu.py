@@ -5,7 +5,8 @@ class Menu:
             '2': 'View Workout History',
             '3': 'View Summary Statistics',
             '4': 'Export Data to CSV',
-            '5': 'Exit'
+            '5': 'Plot calories per day',
+            '6': 'Exit'
         }
 
     def display_menu(self):
@@ -13,6 +14,12 @@ class Menu:
         for key, value in self.options.items():
             print(f"{key}. {value}")
         print("-----------------------------------")
+
+        while True:
+            choice = self.get_user_choice()
+            valid_choice = self.handle_choice(choice)
+            if valid_choice:
+                return valid_choice
 
     def get_user_choice(self):
         choice = input("Please select an option: ")
